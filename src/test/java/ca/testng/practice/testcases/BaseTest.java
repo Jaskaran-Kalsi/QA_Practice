@@ -62,18 +62,18 @@ public class BaseTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
-        Iterator<Map.Entry<String, String>> it = envCapabilities.entrySet().iterator();
+        Iterator it = envCapabilities.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry<String, String> pair = it.next();
-            capabilities.setCapability(pair.getKey(), pair.getValue());
+            Map.Entry pair = (Map.Entry)it.next();
+            capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
         }
 
         Map<String, String> commonCapabilities = (Map<String, String>) config.get("capabilities");
         it = commonCapabilities.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry<String, String> pair = it.next();
-            if(capabilities.getCapability(pair.getKey()) == null){
-                capabilities.setCapability(pair.getKey(), pair.getValue());
+            Map.Entry pair = (Map.Entry)it.next();
+            if(capabilities.getCapability(pair.getKey().toString()) == null){
+                capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
             }
         }
 
@@ -95,7 +95,7 @@ public class BaseTest {
             local.start(options);
         }
 
-        driver = new AndroidDriver<>(new URL("http://"
+        driver = new AndroidDriver(new URL("http://"
                 + username
                 + ":"
                 + accessKey
