@@ -8,4 +8,5 @@
             <class name="ca.testng.practice.testcases.SingleTest"/>
         </classes>
     </test>
+
 </suite>
