@@ -3,8 +3,10 @@ package ca.testng.practice.testcases;
 import com.browserstack.local.Local;
 import com.google.common.flogger.FluentLogger;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
@@ -13,7 +15,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.HashMap;
@@ -55,7 +59,12 @@ public class BaseTest {
         iTestContext.setAttribute("testName", testName.get());
         logger.atInfo().log("Executing Test Case: [" + testName.get() + "]");
 
-        JSONParser parser = new JSONParser();
+        if (config_file.contains("local")) {
+            localDriver(config_file, environment);
+        } else {
+            cloudDriver(config_file, environment);
+        }
+        /*JSONParser parser = new JSONParser();
         JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
 
@@ -102,7 +111,7 @@ public class BaseTest {
                 + "@"
                 + config.get("server")
                 + "/wd/hub"), capabilities
-        );
+        );*/
     }
 
     @AfterMethod(alwaysRun=true)
@@ -110,5 +119,89 @@ public class BaseTest {
         driver.quit();
         if(local != null) local.stop();
         logger.atInfo().log("Test Ended...");
+    }
+
+    public void cloudDriver(String config_file, String environment) throws Exception {
+        JSONParser parser = new JSONParser();
+        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
+        JSONObject envs = (JSONObject) config.get("environments");
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+        Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
+        Iterator it = envCapabilities.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+        }
+
+        Map<String, String> commonCapabilities = (Map<String, String>) config.get("capabilities");
+        it = commonCapabilities.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            if(capabilities.getCapability(pair.getKey().toString()) == null){
+                capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+            }
+        }
+
+        String username = (String) config.get("user");
+
+        String accessKey = (String) config.get("key");
+
+        String app = (String) config.get("app");
+        if(app != null && !app.isEmpty()) {
+            capabilities.setCapability("app", app);
+        }
+
+        capabilities.setCapability("name", testName.get());
+
+        if(capabilities.getCapability("browserstack.local") != null && capabilities.getCapability("browserstack.local") == "true"){
+            local = new Local();
+            Map<String, String> options = new HashMap<>();
+            options.put("key", accessKey);
+            local.start(options);
+        }
+
+        driver = new AndroidDriver(new URL("http://"
+                + username
+                + ":"
+                + accessKey
+                + "@"
+                + config.get("server")
+                + "/wd/hub"), capabilities
+        );
+    }
+
+    public void localDriver(String config_file, String environment) throws Exception {
+        JSONParser parser = new JSONParser();
+        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
+        JSONObject envs = (JSONObject) config.get("environments");
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+        Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
+        Iterator it = envCapabilities.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+        }
+
+        Map<String, String> commonCapabilities = (Map<String, String>) config.get("capabilities");
+        it = commonCapabilities.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            if(capabilities.getCapability(pair.getKey().toString()) == null){
+                capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+            }
+        }
+
+        String app = (String) config.get("app");
+
+        if(app != null && !app.isEmpty()) {
+            capabilities.setCapability("app", app);
+        }
+        // capabilities.setCapability("name", testName.get());
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+
+        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     }
 }

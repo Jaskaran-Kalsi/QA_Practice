@@ -1,0 +1,14 @@
+{
+  "capabilities": {
+    "app": "/Users/jkalsi/Projects/Corus/QA_Practice/src/test/resources/applications/WikipediaSample.apk"
+  },
+
+  "environments": {
+    "google_pixel_3": {
+      "deviceName": "Google Pixel 3",
+      "udid": "4432395548493098",
+      "os": "10"
+    }
+  }
+}
+
