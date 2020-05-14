@@ -20,6 +20,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -64,54 +66,6 @@ public class BaseTest {
         } else {
             cloudDriver(config_file, environment);
         }
-        /*JSONParser parser = new JSONParser();
-        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
-        JSONObject envs = (JSONObject) config.get("environments");
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-
-        Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
-        Iterator it = envCapabilities.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
-        }
-
-        Map<String, String> commonCapabilities = (Map<String, String>) config.get("capabilities");
-        it = commonCapabilities.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            if(capabilities.getCapability(pair.getKey().toString()) == null){
-                capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
-            }
-        }
-
-        String username = (String) config.get("user");
-
-        String accessKey = (String) config.get("key");
-
-        String app = (String) config.get("app");
-        if(app != null && !app.isEmpty()) {
-            capabilities.setCapability("app", app);
-        }
-
-        capabilities.setCapability("name", testName.get());
-
-        if(capabilities.getCapability("browserstack.local") != null && capabilities.getCapability("browserstack.local") == "true"){
-            local = new Local();
-            Map<String, String> options = new HashMap<>();
-            options.put("key", accessKey);
-            local.start(options);
-        }
-
-        driver = new AndroidDriver(new URL("http://"
-                + username
-                + ":"
-                + accessKey
-                + "@"
-                + config.get("server")
-                + "/wd/hub"), capabilities
-        );*/
     }
 
     @AfterMethod(alwaysRun=true)
@@ -189,17 +143,16 @@ public class BaseTest {
 
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
-            if(capabilities.getCapability(pair.getKey().toString()) == null){
-                capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+            if (capabilities.getCapability(pair.getKey().toString()) == null) {
+                if (pair.getKey().toString().equalsIgnoreCase("app")) {
+                    Path apkPath = Paths.get(pair.getValue().toString());
+                    capabilities.setCapability(pair.getKey().toString(), apkPath.toAbsolutePath().toString());
+                } else {
+                    capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+                }
             }
         }
 
-        String app = (String) config.get("app");
-
-        if(app != null && !app.isEmpty()) {
-            capabilities.setCapability("app", app);
-        }
-        // capabilities.setCapability("name", testName.get());
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 
         driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
