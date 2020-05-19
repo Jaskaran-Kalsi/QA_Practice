@@ -22,10 +22,10 @@ public class BrowserStackDemoAndroid {
 
         caps.setCapability("device", "Samsung Galaxy S8 Plus");
         caps.setCapability("os_version", "7.0");
-        caps.setCapability("project", "My First Project");
-        caps.setCapability("build", "My First Build");
-        caps.setCapability("name", "Bstack-[Java] Sample Test");
-        caps.setCapability("app", "bs://");
+        caps.setCapability("project", "My First Android Project");
+        caps.setCapability("build", "My First  Android Build");
+        caps.setCapability("name", "Android Sample Test");
+        caps.setCapability("app", "bs://e34a6ac7a8319954524ef62e4ee4b6df67e9a311");
 
         AndroidDriver<AndroidElement> driver = new AndroidDriver<AndroidElement>(new URL("https://"+userName+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub"), caps);
 
