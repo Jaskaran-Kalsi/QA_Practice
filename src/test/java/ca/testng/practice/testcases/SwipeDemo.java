@@ -49,6 +49,9 @@ public class SwipeDemo extends Base {
                     break;
                 }
             }
+            if (showFound) {
+                break;
+            }
             // scroll screen
             swipe();
             Thread.sleep(2000);
