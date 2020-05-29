@@ -2,20 +2,23 @@ package ca.testng.practice.testcases;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class BSSwipe extends BSBase {
 @Test
-    public void test() throws MalformedURLException {
+    public void test() throws MalformedURLException, InterruptedException {
         // TODO Auto-generated method stub
 
-        //AndroidDriver<AndroidElement> driver = Capabilities();
+
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         //click Skip button
@@ -25,9 +28,7 @@ public class BSSwipe extends BSBase {
         //navigate to Shows - Global brand
         WebElement LogoClick = driver.findElement(MobileBy.AndroidUIAutomator("description(\"global\")"));
         LogoClick.click();
- /*       //or
-        //driver.findElementByXPath("//android.widget.ImageView[@content-desc='history']").click()
-        Thread.sleep(2000);
+
 
         // lookup for element to refresh appium
         List<AndroidElement> shows = driver.findElements(By.id("com.shawmedia.smglobal:id/general_show_art_image_view"));
@@ -59,13 +60,6 @@ public class BSSwipe extends BSBase {
             }
         }
 
-
-
-   //navigate to Shows - Global brand
-        driver.findElementByAccessibilityId("global").click();
-        //or
-        //driver.findElementByXPath("//android.widget.ImageView[@content-desc='history']").click()
-        Thread.sleep(2000);
 //click on show to get show details page
         WebElement show = driver.findElement(MobileBy.AndroidUIAutomator("description(\"A Little Late with Lilly Singh\")"));
         show.click();
@@ -73,8 +67,8 @@ public class BSSwipe extends BSBase {
         Thread.sleep(2000);
 
 //click Back button to return to Shows screen - Global brand
-        driver.findElementById("com.shawmedia.smglobal:id/detail_page_back_button").click();
-*/
+       WebElement BackButton = driver.findElement(MobileBy.AndroidUIAutomator("description(\"Back\")"));
+       BackButton.click();
 
     }
 }

@@ -2,12 +2,18 @@ package ca.testng.practice.testcases;
 
 import com.browserstack.local.Local;
 import com.google.common.flogger.FluentLogger;
+import io.appium.java_client.PerformsTouchActions;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
@@ -22,6 +28,7 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -135,7 +142,7 @@ public class BSBase {
         Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
         Iterator it = envCapabilities.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
+            Map.Entry pair = (Map.Entry) it.next();
             capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
         }
 
@@ -143,7 +150,7 @@ public class BSBase {
         it = commonCapabilities.entrySet().iterator();
 
         while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
+            Map.Entry pair = (Map.Entry) it.next();
             if (capabilities.getCapability(pair.getKey().toString()) == null) {
                 if (pair.getKey().toString().equalsIgnoreCase("app")) {
                     Path apkPath = Paths.get(pair.getValue().toString());
@@ -154,9 +161,22 @@ public class BSBase {
             }
         }
 
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        public void swipe() {
+            capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 
-        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+            driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        }
+            // calculate bottom & top of the screen
+            Dimension size = driver.manage().window().getSize();
+            int middleX = (int) (size.getWidth() * 0.5);
+            int bottomY = (int) (size.getHeight() * 0.8);
+            int topY = (int) (size.getHeight() * 0.3);
+            new TouchActions(driver)
+                    .press(PointOption.point(middleX, bottomY))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
+                    .moveTo(PointOption.point(middleX, topY))
+                    .release()
+                    .perform();
     }
-}
 
+}
