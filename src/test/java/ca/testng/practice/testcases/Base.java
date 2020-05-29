@@ -23,7 +23,7 @@ public class Base {
     static AndroidDriver<AndroidElement> driver;
 
     public static AndroidDriver<AndroidElement> Capabilities() throws MalformedURLException, InterruptedException {
-        File fs = new File("/Users/jkalsi/Project/QA_Practice/src/test/resources/applications/android-release-build-4.0.0-405.apk");
+        File fs = new File("/Users/ekotliar/Project/QA_Practice/src/test/resources/applications/android-release-build-4.0.0-405.apk");
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator");
         cap.setCapability(MobileCapabilityType.UDID, "emulator-5554");

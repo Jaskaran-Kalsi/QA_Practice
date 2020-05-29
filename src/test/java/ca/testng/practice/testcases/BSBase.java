@@ -27,11 +27,11 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * @author jkalsi - QA_Practice
+ * @author ekotliar
  * @since May 05, 2020
  */
 @SuppressWarnings("unchecked")
-public class BaseTest {
+public class BSBase {
 
     /**
      * Test Name for the test being executed by current Thread.
@@ -159,3 +159,4 @@ public class BaseTest {
         driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     }
 }
+

@@ -2,32 +2,29 @@ package ca.testng.practice.testcases;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import java.net.URL;
 
-public class SwipeDemo extends Base {
-
-    public static void main(String[] args) throws MalformedURLException, InterruptedException {
+public class BSSwipe extends BSBase {
+@Test
+    public void test() throws MalformedURLException {
         // TODO Auto-generated method stub
-        AndroidDriver<AndroidElement> driver = Capabilities();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        //AndroidDriver<AndroidElement> driver = Capabilities();
+       // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 //click Skip button
-        driver.findElementById("com.shawmedia.smglobal:id/left_button").click();
-        //or
-        //driver.findElement(MobileBy.AndroidUIAutomator("text(\"SKIP\")")).click();
-        //or
+
         //WebElement skipButton = driver.findElement(MobileBy.AndroidUIAutomator("text(\"SKIP\")"));
         //skipButton.click();
 
         //navigate to Shows - Global brand
-        driver.findElementByAccessibilityId("global").click();
-        //or
+        WebElement LogoClick = driver.findElement(MobileBy.AndroidUIAutomator("text(\"global\")"));
+        LogoClick.click();
+ /*       //or
         //driver.findElementByXPath("//android.widget.ImageView[@content-desc='history']").click()
         Thread.sleep(2000);
 
@@ -63,7 +60,7 @@ public class SwipeDemo extends Base {
 
 
 
-/*//navigate to Shows - Global brand
+   //navigate to Shows - Global brand
         driver.findElementByAccessibilityId("global").click();
         //or
         //driver.findElementByXPath("//android.widget.ImageView[@content-desc='history']").click()
@@ -71,12 +68,12 @@ public class SwipeDemo extends Base {
 //click on show to get show details page
         WebElement show = driver.findElement(MobileBy.AndroidUIAutomator("description(\"A Little Late with Lilly Singh\")"));
         show.click();
-*/
+
         Thread.sleep(2000);
 
 //click Back button to return to Shows screen - Global brand
         driver.findElementById("com.shawmedia.smglobal:id/detail_page_back_button").click();
-
+*/
 
     }
 }
