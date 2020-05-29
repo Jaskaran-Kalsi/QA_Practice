@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class BSSwipe extends BSBase {
 @Test
@@ -15,14 +16,14 @@ public class BSSwipe extends BSBase {
         // TODO Auto-generated method stub
 
         //AndroidDriver<AndroidElement> driver = Capabilities();
-       // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//click Skip button
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        //WebElement skipButton = driver.findElement(MobileBy.AndroidUIAutomator("text(\"SKIP\")"));
-        //skipButton.click();
+        //click Skip button
+        WebElement skipButton = driver.findElement(MobileBy.AndroidUIAutomator("text(\"SKIP\")"));
+        skipButton.click();
 
         //navigate to Shows - Global brand
-        WebElement LogoClick = driver.findElement(MobileBy.AndroidUIAutomator("text(\"global\")"));
+        WebElement LogoClick = driver.findElement(MobileBy.AndroidUIAutomator("description(\"global\")"));
         LogoClick.click();
  /*       //or
         //driver.findElementByXPath("//android.widget.ImageView[@content-desc='history']").click()
