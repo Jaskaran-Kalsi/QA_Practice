@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Demo">
+    <test name="BSSwipe">
+        <parameter name="config" value="BSAndroid.conf.json"/>
+        <parameter name="environment" value="google_pixel_3"/>
+        <classes>
+            <class name="ca.testng.practice.testcases.BSSwipe"/>
+        </classes>
+    </test>
+
+</suite>
