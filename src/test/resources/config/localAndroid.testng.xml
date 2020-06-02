@@ -5,7 +5,7 @@
         <parameter name="config" value="localAndroid.conf.json"/>
         <parameter name="environment" value="google_pixel_3"/>
         <classes>
-            <class name="ca.testng.practice.testcases.SwipeDemo"/>
+            <class name="ca.testng.practice.testcases.BSSwipe"/>
         </classes>
     </test>
 

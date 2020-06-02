@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class BSSwipe extends BSBase {
-@Test
+
+    @Test
     public void test() throws MalformedURLException, InterruptedException {
         // TODO Auto-generated method stub
 

@@ -5,6 +5,7 @@ import com.google.common.flogger.FluentLogger;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.json.simple.JSONObject;
@@ -155,7 +156,9 @@ public class BSBase {
                 }
             }
         }
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 
+        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     }
 
     public void swipe() {
