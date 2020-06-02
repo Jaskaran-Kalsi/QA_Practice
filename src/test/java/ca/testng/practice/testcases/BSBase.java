@@ -118,7 +118,6 @@ public class BSBase {
             local.start(options);
         }
 
-
         driver = new AndroidDriver(new URL("http://"
                 + username
                 + ":"
@@ -155,10 +154,10 @@ public class BSBase {
                 } else {
                     capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
                 }
-
             }
         }
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+
         driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     }
 
