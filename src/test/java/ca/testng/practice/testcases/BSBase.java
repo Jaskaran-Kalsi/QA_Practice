@@ -64,7 +64,7 @@ public class BSBase {
         iTestContext.setAttribute("testName", testName.get());
         logger.atInfo().log("Executing Test Case: [" + testName.get() + "]");
 
-        if (config_file.contains("local")) {
+        if (config_file.toLowerCase().contains("local")) {
             localDriver(config_file, environment);
         } else {
             cloudDriver(config_file, environment);
