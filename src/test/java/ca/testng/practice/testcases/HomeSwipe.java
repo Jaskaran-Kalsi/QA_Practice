@@ -34,7 +34,7 @@ public class HomeSwipe extends BSBase {
 
 
 
-      //works good
+      //Swipe down and click on show tile - works good
         Dimension size = driver.manage().window().getSize();
         int middleX = (int) (size.getWidth() * 0.5);
         int bottomY = (int) (size.getHeight() * 0.8);
