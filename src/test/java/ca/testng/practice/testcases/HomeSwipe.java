@@ -32,33 +32,9 @@ public class HomeSwipe extends BSBase {
         WebElement skipButton = driver.findElement(MobileBy.AndroidUIAutomator("text(\"SKIP\")"));
         skipButton.click();
 
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-    }
 
 
-        // from tutorial
-
-         public void RotatorSwipe(){
-
-             boolean flag = false;
-
-             for(int i=0;i<=20;i++);
-       {
-           try {
-               driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-               driver.findElement(By.id("Survivor: Winners at War")).click();
-
-
-          } catch (Exception e){
-               //TODO: Handle exception
-               swipe();
-           }
-       }
-
-
-
-
-/*        //works good
+      //works good
         Dimension size = driver.manage().window().getSize();
         int middleX = (int) (size.getWidth() * 0.5);
         int bottomY = (int) (size.getHeight() * 0.8);
@@ -74,8 +50,9 @@ public class HomeSwipe extends BSBase {
                 .perform();
         WebElement show=driver.findElement(MobileBy.AndroidUIAutomator("description(\"Survivor: Winners at War\")"));
         show.click();
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
-*/
+
 
     }
 }

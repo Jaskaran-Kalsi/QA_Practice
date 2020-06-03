@@ -31,7 +31,7 @@ public class BSSwipe extends BSBase {
         //click Skip button
         WebElement skipButton = driver.findElement(MobileBy.AndroidUIAutomator("text(\"SKIP\")"));
         skipButton.click();
-
+/*
         //navigate to Shows - Global brand
         WebElement LogoClick = driver.findElement(MobileBy.AndroidUIAutomator("description(\"global\")"));
         LogoClick.click();
@@ -78,7 +78,8 @@ public class BSSwipe extends BSBase {
           BackButton.click();
     //navigate to Home
     driver.findElement(MobileBy.AndroidUIAutomator("text(\"HOME\")")).click();
-    // Thread.sleep(2000);
+    Thread.sleep(2000);
+*/
 
     //scroll down
     // calculate bottom & top of the screen
@@ -87,9 +88,9 @@ public class BSSwipe extends BSBase {
     int bottomY = (int) (size.getHeight() * 0.8);
     int topY = (int) (size.getHeight() * 0.3);
     // lookup for element to refresh appium
-    List<AndroidElement> lst = driver.findElement(By.id("com.shawmedia.smglobal:id/shows_grid_view"));
-
+    List<AndroidElement> lst = driver.findElement(By.id("com.shawmedia.smglobal:id/general_show_art_image_view"));
     System.out.println(lst.size());
+
     // scroll screen
     new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
             .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
