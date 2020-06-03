@@ -33,39 +33,32 @@ public class HomeSwipe extends BSBase {
         skipButton.click();
 
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    }
 
-/*
-        // lookup for element to refresh appium
-        List<AndroidElement> shows = driver.findElements(By.id("com.shawmedia.smglobal:id/non_swipe_view_pager"));
-        List<String> showsName = new ArrayList<>();
-        for (AndroidElement el : shows) {
-            showsName.add(el.getAttribute("content-desc"));
-        }
-        List<String> previousList = new ArrayList<>();
-        boolean showFound = false;
-        while (!previousList.equals(showsName) && !showFound) {
-            for (AndroidElement el : shows) {
-                if (el.getAttribute("content-desc").contains("Survivor: Winners at War")) {
-                    el.click();
-                    showFound = true;
-                    break;
-                }
-            }
-            if (showFound) {
-                break;}
-            // scroll screen
-            swipe();
-            Thread.sleep(2000);
-            previousList.clear();
-            previousList.addAll(showsName);
-            shows = driver.findElements(By.id("com.shawmedia.smglobal:id/non_swipe_view_pager"));
-            showsName.clear();
-            for (AndroidElement el : shows) {
-                showsName.add(el.getAttribute("content-desc"));
-            }
-        }
 
- */
+        // from tutorial
+
+         public void RotatorSwipe(){
+
+             boolean flag = false;
+
+             for(int i=0;i<=20;i++);
+       {
+           try {
+               driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+               driver.findElement(By.id("Survivor: Winners at War")).click();
+
+
+          } catch (Exception e){
+               //TODO: Handle exception
+               swipe();
+           }
+       }
+
+
+
+
+/*        //works good
         Dimension size = driver.manage().window().getSize();
         int middleX = (int) (size.getWidth() * 0.5);
         int bottomY = (int) (size.getHeight() * 0.8);
@@ -82,7 +75,7 @@ public class HomeSwipe extends BSBase {
         WebElement show=driver.findElement(MobileBy.AndroidUIAutomator("description(\"Survivor: Winners at War\")"));
         show.click();
 
-
+*/
 
     }
 }

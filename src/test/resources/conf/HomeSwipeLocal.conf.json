@@ -1,0 +1,13 @@
+{
+  "capabilities": {
+    "app": "src/test/resources/applications/android-release-build-4.0.0-406.apk"
+  },
+
+  "environments": {
+    "google_pixel_3": {
+      "deviceName": "Google Pixel 3",
+      "udid": "emulator-5554",
+      "os": "10"
+    }
+  }
+}
