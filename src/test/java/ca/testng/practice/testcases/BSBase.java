@@ -174,4 +174,27 @@ public class BSBase {
                 .release()
                 .perform();
     }
+
+
+/*
+   //test to scroll horizontal
+         public void scroll() {
+
+        //calculate bottom & top of the screen
+
+        Dimension size1 = driver.manage().window().getSize();
+
+        int startY = (int) (size1.getHeight() / 2);
+        int startX = (int) (size1.getWidth() * 0.90);
+        int endX = (int) (size1.getWidth() * 0.05);
+        new TouchAction((PerformsTouchActions) driver)
+                .press(PointOption.point(startX, startY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
+                .moveTo(PointOption.point(endX, startY))
+                .release()
+                .perform();
+    }
+    */
+
 }
+
