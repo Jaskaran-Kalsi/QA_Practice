@@ -33,7 +33,7 @@ public class HomeSwipe extends BSBase {
         skipButton.click();
 
 
-
+/*
       //Swipe down and click on show tile - works good
         Dimension size = driver.manage().window().getSize();
         int middleX = (int) (size.getWidth() * 0.5);
@@ -51,7 +51,43 @@ public class HomeSwipe extends BSBase {
         WebElement show=driver.findElement(MobileBy.AndroidUIAutomator("description(\"Survivor: Winners at War\")"));
         show.click();
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+*/
 
+        // lookup for element to refresh appium
+        List<AndroidElement> shows = driver.findElements(By.id("com.shawmedia.smglobal:id/home_show_art_image_view"));
+        List<String> showsName = new ArrayList<>();
+        for (AndroidElement el : shows) {
+            showsName.add(el.getAttribute("content-desc"));
+        }
+        List<String> previousList = new ArrayList<>();
+        boolean tileFound = false;
+        while (!previousList.equals(showsName) && !tileFound) {
+            for (AndroidElement el : shows) {
+                if (el.getAttribute("content-desc").contains("Rules")) {
+                    el.click();
+                    tileFound = true;
+                    break;
+                }
+            }
+            if (tileFound) {
+                break;}
+            // scroll screen
+            swipe();
+            Thread.sleep(2000);
+            previousList.clear();
+            previousList.addAll(showsName);
+            shows = driver.findElements(By.id("com.shawmedia.smglobal:id/home_show_art_image_view"));
+            showsName.clear();
+            for (AndroidElement el : shows) {
+                showsName.add(el.getAttribute("content-desc"));
+            }
+        }
+
+        driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+
+        //Click Back button
+        WebElement BackButton = driver.findElement(By.id("com.shawmedia.smglobal:id/detail_page_back_button"));
+        BackButton.click();
 
 
     }
