@@ -33,7 +33,7 @@ public class HomeSwipe extends BSBase {
         skipButton.click();
 
 
-/*
+
       //Swipe down and click on show tile - works good - number of Touchactions should be set by experiment
         Dimension size = driver.manage().window().getSize();
         int middleX = (int) (size.getWidth() * 0.5);
@@ -51,7 +51,11 @@ public class HomeSwipe extends BSBase {
         WebElement show=driver.findElement(MobileBy.AndroidUIAutomator("description(\"Survivor: Winners at War\")"));
         show.click();
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-*/
+
+
+        //Click Back button
+        WebElement BackButton = driver.findElement(By.id("com.shawmedia.smglobal:id/detail_page_back_button"));
+        BackButton.click();
 
 // another way of reaching show tile on Home screen - number of swipes should be set by experiment
         swipe();
@@ -66,14 +70,12 @@ public class HomeSwipe extends BSBase {
         swipe();
         Thread.sleep(2000);
 
-        WebElement showRules = driver.findElement(MobileBy.AndroidUIAutomator("description(\"Scott’s Vacation House Rules\")"));
+        WebElement showRules = driver.findElement(MobileBy.AndroidUIAutomator("description(\"The Sinner\")"));
         showRules.click();
 
-
-
         //Click Back button
-        WebElement BackButton = driver.findElement(By.id("com.shawmedia.smglobal:id/detail_page_back_button"));
-        BackButton.click();
+        WebElement BackButton1 = driver.findElement(By.id("com.shawmedia.smglobal:id/detail_page_back_button"));
+        BackButton1.click();
 
         driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 
