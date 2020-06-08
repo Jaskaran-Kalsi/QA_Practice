@@ -54,11 +54,15 @@ public class HomeSwipe extends BSBase {
 */
 
         // lookup for element to refresh appium
+        swipe();
+        swipe();
         List<AndroidElement> shows = driver.findElements(By.id("com.shawmedia.smglobal:id/home_show_art_image_view"));
+
         List<String> showsName = new ArrayList<>();
         for (AndroidElement el : shows) {
             showsName.add(el.getAttribute("content-desc"));
         }
+
         List<String> previousList = new ArrayList<>();
         boolean tileFound = false;
         while (!previousList.equals(showsName) && !tileFound) {
@@ -82,8 +86,6 @@ public class HomeSwipe extends BSBase {
                 showsName.add(el.getAttribute("content-desc"));
             }
         }
-
-        driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 
         //Click Back button
         WebElement BackButton = driver.findElement(By.id("com.shawmedia.smglobal:id/detail_page_back_button"));
