@@ -35,21 +35,63 @@ public class VideoPlayback extends BSBase {
         skipButton.click();
         //driver.findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
 
-        swipe();
+        //Find Top News Collection - must end with /..
+        WebElement latestEpisodesCollection = driver.findElement(By.xpath("//android.widget.TextView[@text='Latest Global TV Episodes']/.."));
+
+        //find webelements within Top News collection
+        List<WebElement> listOfThumbnails1 = latestEpisodesCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
+        swipeHorizontal(listOfThumbnails1.get(1), listOfThumbnails1.get(0));
+        swipeHorizontal(listOfThumbnails1.get(1), listOfThumbnails1.get(0));
+
+       //Find episode thumbnail and click back to close player
+        driver.findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
+        driver.findElement(By.id("com.shawmedia.smglobal:id/player_back_button"));
+
+
+
+        //scroll down
+        // calculate bottom & top of the screen
+        Dimension size = driver.manage().window().getSize();
+        int middleX = (int) (size.getWidth() * 0.5);
+        int bottomY = (int) (size.getHeight() * 0.8);
+        int topY = (int) (size.getHeight() * 0.3);
+        // lookup for element to refresh appium
+        List<AndroidElement> lst = driver.findElements(By.id("com.shawmedia.smglobal:id/home_show_art_image_view"));
+        System.out.println(lst.size());
+        new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
+                .perform();
+        new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
+                .perform();
+
+        driver.findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
+        driver.findElement(By.id("com.shawmedia.smglobal:id/player_back_button"));
+
+
+        // swipe using method in BSBAse
+       //swipe();
         Thread.sleep(3000);
 
-        //MobileElement elementFrom =driver.findElement(MobileBy.AndroidUIAutomator("description(\"Port Hope police hand out tickets to park-goers\")"));
-        //MobileElement elementTo = driver.findElement(MobileBy.AndroidUIAutomator("description(\"Watch out for loan scams during COVID-19 pandemic, experts warn\")"));
-
-
+        //Find Top News Collection - must end with /..
         WebElement topNewCollection = driver.findElement(By.xpath("//android.widget.TextView[@text='Top News']/.."));
+
+        //find webelements within Top News collection
         List<WebElement> listOfThumbnails = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
 
+        for (WebElement thumbnail : listOfThumbnails) {
+            WebElement des = thumbnail.findElement(By.id("com.shawmedia.smglobal:id/home_page_description_episode_title"));
+            System.out.println(des.getText());
+        }
+
         swipeHorizontal(listOfThumbnails.get(1), listOfThumbnails.get(0));
-        // swipeHoriz();
+
+        Thread.sleep(3000);
+
+        driver.findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
 
 
-        //com.shawmedia.smglobal:id/home_page_video_play_lock_icon
+
 /*        try
         {
             System.setOut(new PrintStream(new FileOutputStream("listOfThumbnails")));
@@ -73,7 +115,7 @@ public class VideoPlayback extends BSBase {
 
         driver.findElement(MobileBy.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
 */
-        Thread.sleep(3000);
+        Thread.sleep(10000);
 
 
     }

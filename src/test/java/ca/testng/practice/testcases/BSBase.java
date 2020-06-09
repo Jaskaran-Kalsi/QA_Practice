@@ -183,25 +183,7 @@ public class BSBase {
                 .perform();
     }
 
-    public void swipeHoriz()
-    {
-        MobileElement elementFrom = driver.findElement(MobileBy.AndroidUIAutomator("description(\"Nurses surprised at their wedding with pictures of guests on church pews\")"));
-        MobileElement elementTo = driver.findElement(MobileBy.AndroidUIAutomator("description(\"Port Hope police hand out tickets to park-goers\")"));
 
-        Point pFrom = elementFrom.getLocation();
-        Point pTo = elementTo.getLocation();
-        PointOption<ElementOption> pressOptionsFrom = new PointOption<>();
-        pressOptionsFrom.withCoordinates(pFrom);
-        PointOption<ElementOption> pressOptionsTo = new PointOption<>();
-        pressOptionsTo.withCoordinates(pTo);
-        TouchAction<AndroidTouchAction> action = new AndroidTouchAction((PerformsTouchActions) driver).
-                longPress(pressOptionsFrom).
-                moveTo(pressOptionsTo).
-                release();
-        action.perform();
-        logger.atInfo().log("Swipe Completed.");
-
-    }
 
     public void swipeHorizontal(WebElement elementFrom, WebElement elementTo) {
         Point pFrom = elementFrom.getLocation();
