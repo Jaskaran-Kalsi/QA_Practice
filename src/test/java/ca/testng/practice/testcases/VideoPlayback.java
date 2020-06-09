@@ -29,10 +29,6 @@ public class VideoPlayback extends BSBase {
 
     @Test
     public void test() throws MalformedURLException, InterruptedException, FileNotFoundException {
-        // TODO Auto-generated method stub
-
-
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         //click Skip button
         WebElement skipButton = driver.findElement(MobileBy.AndroidUIAutomator("text(\"SKIP\")"));
@@ -49,7 +45,8 @@ public class VideoPlayback extends BSBase {
         WebElement topNewCollection = driver.findElement(By.xpath("//android.widget.TextView[@text='Top News']/.."));
         List<WebElement> listOfThumbnails = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
 
-       swipeHoriz();
+        swipeHorizontal(listOfThumbnails.get(1), listOfThumbnails.get(0));
+        // swipeHoriz();
 
 
         //com.shawmedia.smglobal:id/home_page_video_play_lock_icon

@@ -17,6 +17,7 @@ import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
@@ -33,6 +34,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author ekotliar
@@ -74,6 +76,7 @@ public class BSBase {
         } else {
             cloudDriver(config_file, environment);
         }
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterMethod(alwaysRun=true)
@@ -179,6 +182,7 @@ public class BSBase {
                 .release()
                 .perform();
     }
+
     public void swipeHoriz()
     {
         MobileElement elementFrom = driver.findElement(MobileBy.AndroidUIAutomator("description(\"Nurses surprised at their wedding with pictures of guests on church pews\")"));
@@ -199,7 +203,20 @@ public class BSBase {
 
     }
 
-
+    public void swipeHorizontal(WebElement elementFrom, WebElement elementTo) {
+        Point pFrom = elementFrom.getLocation();
+        Point pTo = elementTo.getLocation();
+        PointOption<ElementOption> pressOptionsFrom = new PointOption<>();
+        pressOptionsFrom.withCoordinates(pFrom);
+        PointOption<ElementOption> pressOptionsTo = new PointOption<>();
+        pressOptionsTo.withCoordinates(pTo);
+        TouchAction<AndroidTouchAction> action = new AndroidTouchAction((PerformsTouchActions) driver).
+                longPress(pressOptionsFrom).
+                moveTo(pressOptionsTo).
+                release();
+        action.perform();
+        logger.atInfo().log("Swipe Completed.");
+    }
 /*
    //test to scroll horizontal
          public void scroll() {
