@@ -43,9 +43,29 @@ public class VideoPlayback extends BSBase {
 
 
         WebElement topNewCollection = driver.findElement(By.xpath("//android.widget.TextView[@text='Top News']/.."));
+
         List<WebElement> listOfThumbnails = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
 
-        swipeHorizontal(listOfThumbnails.get(1), listOfThumbnails.get(0));
+        List<String> listThumbnailDes = new ArrayList<>();
+        List<String> oldListThumbnailDes = new ArrayList<>();
+        for (WebElement thumbnail : listOfThumbnails) {
+            WebElement des = thumbnail.findElement(By.id("com.shawmedia.smglobal:id/home_page_description_episode_title"));
+            listThumbnailDes.add(des.getText());
+        }
+
+        while (!listThumbnailDes.equals(oldListThumbnailDes)) {
+
+            swipeHorizontal(listOfThumbnails.get(listOfThumbnails.size() - 1), listOfThumbnails.get(0));
+            oldListThumbnailDes = listThumbnailDes;
+            listThumbnailDes.clear();
+            Thread.sleep(1000);
+            listOfThumbnails = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
+            System.out.println(listOfThumbnails.size());
+            for (WebElement thumbnail : listOfThumbnails) {
+                WebElement des = thumbnail.findElement(By.id("com.shawmedia.smglobal:id/home_page_description_episode_title"));
+                listThumbnailDes.add(des.getText());
+            }
+        }
         // swipeHoriz();
 
 
