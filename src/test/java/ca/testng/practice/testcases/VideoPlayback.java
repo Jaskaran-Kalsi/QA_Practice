@@ -7,10 +7,8 @@ import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.testng.annotations.Test;
 
 import javax.lang.model.element.Element;
@@ -35,21 +33,35 @@ public class VideoPlayback extends BSBase {
         skipButton.click();
         //driver.findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
 
-        //Find Top News Collection - must end with /..
+        //Find Latest Episodes Collection - must end with /..
         WebElement latestEpisodesCollection = driver.findElement(By.xpath("//android.widget.TextView[@text='Latest Global TV Episodes']/.."));
 
-        //find webelements within Top News collection
+        //find webelements within Latest Episodes collection
+        List<WebElement> listOfThumbnails = latestEpisodesCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
+        swipeHorizontal(listOfThumbnails.get(1), listOfThumbnails.get(0));
         List<WebElement> listOfThumbnails1 = latestEpisodesCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
         swipeHorizontal(listOfThumbnails1.get(1), listOfThumbnails1.get(0));
-        swipeHorizontal(listOfThumbnails1.get(1), listOfThumbnails1.get(0));
 
-       //Find episode thumbnail and click back to close player
-        driver.findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
-        driver.findElement(By.id("com.shawmedia.smglobal:id/player_back_button"));
+       //Find episode thumbnail to open player
+
+        listOfThumbnails1.get(0).findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
+        Thread.sleep(3000);
+
+       // tap on palyer to show Control rack
+        driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc=\"Show player controls\"]/android.widget.FrameLayout[1]/android.webkit.WebView/android.webkit.WebView/android.view.View\n")).click();
+
+        //tap on Pause button to pause playback
+        driver.findElement(By.id("com.shawmedia.smglobal:id/exo_pause")).click();
+        Thread.sleep(2000);
+
+        //click Back button to close the player
+        driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageButton\n")).click();
+        //or
+        //driver.findElement(By.id("com.shawmedia.smglobal:id/player_back_button")).click();
+        Thread.sleep(3000);
 
 
-
-        //scroll down
+        //scroll down - 1 method
         // calculate bottom & top of the screen
         Dimension size = driver.manage().window().getSize();
         int middleX = (int) (size.getWidth() * 0.5);
@@ -65,42 +77,44 @@ public class VideoPlayback extends BSBase {
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
                 .perform();
 
-        driver.findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
-        driver.findElement(By.id("com.shawmedia.smglobal:id/player_back_button"));
 
-
-        // swipe using method in BSBAse
-       //swipe();
-        Thread.sleep(3000);
+        // Scroll down - 2 method -  using swipe() method in BSBAse
+        //swipe();
+        //Thread.sleep(3000);
 
         //Find Top News Collection - must end with /..
         WebElement topNewCollection = driver.findElement(By.xpath("//android.widget.TextView[@text='Top News']/.."));
 
         //find webelements within Top News collection
-        List<WebElement> listOfThumbnails = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
 
-        for (WebElement thumbnail : listOfThumbnails) {
+        List<WebElement> listOfThumbnails2 = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
+
+        //print names of the thumbnails
+        for (WebElement thumbnail : listOfThumbnails2) {
             WebElement des = thumbnail.findElement(By.id("com.shawmedia.smglobal:id/home_page_description_episode_title"));
             System.out.println(des.getText());
         }
+        //Swipe the first set of thumbnails - using swipeHorizontal method in BSBase
+        swipeHorizontal(listOfThumbnails2.get(1), listOfThumbnails.get(0));
+         // Find Elements and swipe
+        List<WebElement> listOfThumbnails3 = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
+        swipeHorizontal(listOfThumbnails3.get(1), listOfThumbnails1.get(0));
 
-        swipeHorizontal(listOfThumbnails.get(1), listOfThumbnails.get(0));
+        // Find list of Elements and swipe
+        List<WebElement> listOfThumbnails4 = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
+        swipeHorizontal(listOfThumbnails4.get(1), listOfThumbnails1.get(0));
 
+        //click on thumbnail to open player
+        listOfThumbnails4.get(1).findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
+
+        // tap on palyer to show Control rack
+        driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc=\"Show player controls\"]/android.widget.FrameLayout[1]/android.webkit.WebView/android.webkit.WebView/android.view.View\n")).click();
         Thread.sleep(3000);
-
-        driver.findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
-
-
-
-/*        try
-        {
-            System.setOut(new PrintStream(new FileOutputStream("listOfThumbnails")));
-            System.out.println();
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
-
-        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+        //click Back button to close the player
+        driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageButton\n")).click();
+        //or
+        //driver.findElement(By.id("com.shawmedia.smglobal:id/player_back_button")).click();
+        Thread.sleep(3000);
 
 
 /*String text = "Top News";

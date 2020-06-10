@@ -181,6 +181,7 @@ public class BSBase {
                 .moveTo(PointOption.point(middleX, topY))
                 .release()
                 .perform();
+        logger.atInfo().log("Swipe Completed.");
     }
 
 
@@ -200,24 +201,15 @@ public class BSBase {
         logger.atInfo().log("Swipe Completed.");
     }
 /*
-   //test to scroll horizontal
-         public void scroll() {
+   //test to tap player for palyer controls
+         public void tapPlayer(int x, int y) {
 
-        //calculate bottom & top of the screen
-
-        Dimension size1 = driver.manage().window().getSize();
-
-        int startY = (int) (size1.getHeight() / 2);
-        int startX = (int) (size1.getWidth() * 0.90);
-        int endX = (int) (size1.getWidth() * 0.05);
         new TouchAction((PerformsTouchActions) driver)
-                .press(PointOption.point(startX, startY))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
-                .moveTo(PointOption.point(endX, startY))
-                .release()
+                .tap(PointOption.point(x, y))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(200)))
                 .perform();
     }
-    */
+*/
 
 }
 
