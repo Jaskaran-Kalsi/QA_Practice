@@ -2,6 +2,7 @@ package ca.testng.practice.testcases.TestVersions;
 
 import ca.testng.practice.testcases.BSBase;
 
+import ca.testng.practice.testcases.Base;
 import io.appium.java_client.MobileBy;
 import org.openqa.selenium.WebElement;
 

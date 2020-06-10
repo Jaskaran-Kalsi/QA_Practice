@@ -41,6 +41,7 @@ public class VideoPlayback extends BSBase {
         //find webelements within Top News collection
         List<WebElement> listOfThumbnails1 = latestEpisodesCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
         swipeHorizontal(listOfThumbnails1.get(1), listOfThumbnails1.get(0));
+        listOfThumbnails1 = latestEpisodesCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
         swipeHorizontal(listOfThumbnails1.get(1), listOfThumbnails1.get(0));
 
        //Find episode thumbnail and click back to close player
