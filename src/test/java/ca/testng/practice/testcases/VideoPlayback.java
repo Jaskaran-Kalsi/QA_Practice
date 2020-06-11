@@ -33,19 +33,20 @@ public class VideoPlayback extends BSBase {
         skipButton.click();
         //driver.findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
 
-        //Find Latest Episodes Collection - must end with /..
+ /*       //Find Latest Episodes Collection - must end with /..
         WebElement latestEpisodesCollection = driver.findElement(By.xpath("//android.widget.TextView[@text='Latest Global TV Episodes']/.."));
 
         //find webelements within Latest Episodes collection
         List<WebElement> listOfThumbnails = latestEpisodesCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
+        //Swipe the first set of thumbnails - using swipeHorizontal method in BSBase
         swipeHorizontal(listOfThumbnails.get(1), listOfThumbnails.get(0));
-        List<WebElement> listOfThumbnails1 = latestEpisodesCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
-        swipeHorizontal(listOfThumbnails1.get(1), listOfThumbnails1.get(0));
+        //Swipe the first set of thumbnails - using swipeHorizontal method in BSBase
+        swipeHorizontal(listOfThumbnails.get(1), listOfThumbnails.get(0));
 
        //Find episode thumbnail to open player
 
-        listOfThumbnails1.get(0).findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
-        Thread.sleep(20000);
+        listOfThumbnails.get(1).findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
+        Thread.sleep(2000);
 
        // tap on palyer to show Control rack
         driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc=\"Show player controls\"]/android.widget.FrameLayout[1]/android.webkit.WebView/android.webkit.WebView/android.view.View\n")).click();
@@ -59,7 +60,7 @@ public class VideoPlayback extends BSBase {
         //or
         //driver.findElement(By.id("com.shawmedia.smglobal:id/player_back_button")).click();
         Thread.sleep(3000);
-
+*/
 
         //scroll down - 1 method
         // calculate bottom & top of the screen
@@ -87,59 +88,47 @@ public class VideoPlayback extends BSBase {
 
         //find webelements within Top News collection
 
-        List<WebElement> listOfThumbnails2 = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
+        List<WebElement> listOfThumbnails1 = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
 
         //print names of the thumbnails
-        for (WebElement thumbnail : listOfThumbnails2) {
+        for (WebElement thumbnail : listOfThumbnails1) {
             WebElement des = thumbnail.findElement(By.id("com.shawmedia.smglobal:id/home_page_description_episode_title"));
             System.out.println(des.getText());
         }
         //Swipe the first set of thumbnails - using swipeHorizontal method in BSBase
-        swipeHorizontal(listOfThumbnails2.get(1), listOfThumbnails2.get(0));
+        swipeHorizontal(listOfThumbnails1.get(1), listOfThumbnails1.get(0));
          // Find Elements and swipe
-        List<WebElement> listOfThumbnails3 = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
-        swipeHorizontal(listOfThumbnails3.get(1), listOfThumbnails3.get(0));
+       // List<WebElement> listOfThumbnails3 = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
+        swipeHorizontal(listOfThumbnails1.get(1), listOfThumbnails1.get(0));
 
         // Find list of Elements and swipe
-        List<WebElement> listOfThumbnails4 = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
-        swipeHorizontal(listOfThumbnails4.get(1), listOfThumbnails4.get(0));
+        //List<WebElement> listOfThumbnails4 = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
+        swipeHorizontal(listOfThumbnails1.get(1), listOfThumbnails1.get(0));
 
         //click on thumbnail to open player
-        listOfThumbnails4.get(1).findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
+        List<WebElement> listOfThumbnails2 = topNewCollection.findElements(By.id("com.shawmedia.smglobal:id/home_page_video_layout"));
+        listOfThumbnails2.get(2).findElement(By.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
 
-        Thread.sleep(10000);
+        Thread.sleep(5000);
 
        // tap on palyer to show Control rack
-        driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc=\"Show player controls\"]/android.widget.FrameLayout[1]/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View\n")).click();
-        Thread.sleep(2000);
+
+        driver.findElement(By.id("com.shawmedia.smglobal:id/player_view")).click();
+        Thread.sleep(5000);
 
         //tap on Pause button to pause playback
-        driver.findElement(By.id("com.shawmedia.smglobal:id/exo_pause")).click();
-        Thread.sleep(2000);
 
+        // driver.findElement(By.id("com.shawmedia.smglobal:id/exo_pause")).click();
+        //Thread.sleep(1000);
 
-        //driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc=\"Show player controls\"]\n")).click();
-        //Thread.sleep(5000);
 
         //click Back button to close the player
+
         //driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageButton\n")).click();
-
-
         //or
         driver.findElement(By.id("com.shawmedia.smglobal:id/player_back_button")).click();
 
-/*String text = "Top News";
-        WebElement el = driver.findElement(MobileBy
-               .AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.shawmedia.smglobal:id/home_page_collection_list_item_rv\")).setAsVerticalList().scrollIntoView("
-                        + "new UiSelector().text(\""+text+"\"));"));
 
-        String text1 = "Watch out for loan scams during COVID-19 pandemic, experts warn";
-        WebElement el1 = driver.findElement(MobileBy
-                .AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.shawmedia.smglobal:id/home_page_collection_list_item_rv\")).setAsHorizontalList().scrollIntoView("
-                        + "new UiSelector().text(\""+text1+"\"));"));
-
-        driver.findElement(MobileBy.id("com.shawmedia.smglobal:id/home_page_video_art_view")).click();
-*/
         Thread.sleep(10000);
 
 
