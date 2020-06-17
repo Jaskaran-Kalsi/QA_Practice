@@ -1,13 +1,13 @@
 {
   "capabilities": {
-    "app": "src/test/resources/applications/android-release-build-4.0.0-406.apk"
+    "app": "src/test/resources/applications/android-release-build-4.0.0-408.apk"
   },
 
   "environments": {
-    "google_pixel_3": {
-      "deviceName": "Google Pixel 3",
+    "samsung_galaxy_tab_s6": {
+      "deviceName": "Samsung Galaxy Tab S6",
       "udid": "emulator-5554",
-      "os": "10"
+      "os": "9"
     }
   }
 }

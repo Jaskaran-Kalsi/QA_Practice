@@ -3,7 +3,7 @@
 <suite name="Demo">
     <test name="VideoPlayback">
         <parameter name="config" value="VideoPlayback.conf.json"/>
-        <parameter name="environment" value="google_pixel_3"/>
+        <parameter name="environment" value="samsung_galaxy_tab_s6"/>
         <classes>
             <class name="ca.testng.practice.testcases.VideoPlayback"/>
         </classes>
