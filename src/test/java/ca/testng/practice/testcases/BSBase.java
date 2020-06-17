@@ -100,7 +100,7 @@ public class BSBase {
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
             capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
-            if (pair.getKey().toString().contains("Tab")) {
+            if (pair.getValue().toString().contains("Tab")) {
                 capabilities.setCapability(MobileCapabilityType.ORIENTATION, "LANDSCAPE");
             }
         }
