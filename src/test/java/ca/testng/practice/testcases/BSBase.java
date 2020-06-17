@@ -173,8 +173,8 @@ public class BSBase {
         // calculate bottom & top of the screen
         Dimension size = driver.manage().window().getSize();
         int middleX = (int) (size.getWidth() * 0.5);
-        int bottomY = (int) (size.getHeight() * 0.9);
-        int topY = (int) (size.getHeight() * 0.1);
+        int bottomY = (int) (size.getHeight() * 0.8);
+        int topY = (int) (size.getHeight() * 0.3);
         new TouchAction((PerformsTouchActions) driver)
                 .press(PointOption.point(middleX, bottomY))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
@@ -198,7 +198,7 @@ public class BSBase {
                 moveTo(pressOptionsTo).
                 release();
         action.perform();
-        logger.atInfo().log("Swipe Completed.");
+        logger.atInfo().log("Scroll Completed.");
     }
 /*
    //test to tap player for palyer controls
