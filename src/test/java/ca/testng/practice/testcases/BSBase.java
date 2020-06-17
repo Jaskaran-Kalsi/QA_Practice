@@ -81,7 +81,10 @@ public class BSBase {
 
     @AfterMethod(alwaysRun=true)
     public void tearDown() throws Exception {
-        driver.quit();
+        if (driver!=null) {
+            driver.quit();
+        }
+
         if(local != null) local.stop();
         logger.atInfo().log("Test Ended...");
     }
@@ -97,6 +100,9 @@ public class BSBase {
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
             capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+            if (pair.getKey().toString().contains("Tab")) {
+                capabilities.setCapability(MobileCapabilityType.ORIENTATION, "LANDSCAPE");
+            }
         }
 
         Map<String, String> commonCapabilities = (Map<String, String>) config.get("capabilities");

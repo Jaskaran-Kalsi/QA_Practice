@@ -29,7 +29,6 @@ public class VideoPlayback extends BSBase {
     public void test() throws MalformedURLException, InterruptedException, FileNotFoundException {
 // TODO Auto-generated method stub
 
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         try {
             //click Skip button
             WebElement skipButton = driver.findElement(MobileBy.AndroidUIAutomator("text(\"SKIP\")"));

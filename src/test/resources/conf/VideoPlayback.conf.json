@@ -7,13 +7,13 @@
     "build": "testng-practice",
     "browserstack.debug": true,
     "app": "bs://92fadf838abb36f6830dc36ac6e8017a53b843fc",
-    "browserstack.appium_version": "1.14.0",
+    "browserstack.appium_version": "1.17.0",
     "browserstack.geoLocation": "CA"
   },
 
      "environments": {
      "google_pixel_3": {
-       "device": "Samsung Galaxy Tab S3"
+       "device": "Samsung Galaxy Tab S6"
     }
     }
   }
