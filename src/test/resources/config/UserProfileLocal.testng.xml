@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Demo">
-    <test name="HomeSwipe">
-        <parameter name="config" value="HomeSwipe.conf.json"/>
+    <test name="UserProfile">
+        <parameter name="config" value="UserProfileLocal.conf.json"/>
         <parameter name="environment" value="samsung_galaxy_tab_s6"/>
         <classes>
-            <class name="ca.testng.practice.testcases.HomeSwipe"/>
+            <class name="ca.testng.practice.testcases.UserProfile"/>
         </classes>
     </test>
 

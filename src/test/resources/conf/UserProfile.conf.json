@@ -7,7 +7,8 @@
     "build": "testng-practice",
     "browserstack.debug": true,
     "app": "bs://90209e79d7cc6f5dbf087d81128e84e7e1591cb1",
-    "browserstack.appium_version": "1.14.0",
+
+    "browserstack.appium_version": "1.17.0",
     "browserstack.geoLocation": "CA"
   },
 
