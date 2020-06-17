@@ -76,7 +76,7 @@ public class BSBase {
         } else {
             cloudDriver(config_file, environment);
         }
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @AfterMethod(alwaysRun=true)

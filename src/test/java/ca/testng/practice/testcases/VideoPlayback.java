@@ -48,14 +48,14 @@ public class VideoPlayback extends BSBase {
         Thread.sleep(20000);
 
        // tap on palyer to show Control rack
-        driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc=\"Show player controls\"]/android.widget.FrameLayout[1]/android.webkit.WebView/android.webkit.WebView/android.view.View\n")).click();
+        driver.findElement(By.id("com.shawmedia.smglobal:id/exo_content_frame")).click();
 
         //tap on Pause button to pause playback
         driver.findElement(By.id("com.shawmedia.smglobal:id/exo_pause")).click();
         Thread.sleep(2000);
 
         //click Back button to close the player
-        driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageButton\n")).click();
+        driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageButton")).click();
         //or
         //driver.findElement(By.id("com.shawmedia.smglobal:id/player_back_button")).click();
         Thread.sleep(3000);
@@ -110,12 +110,12 @@ public class VideoPlayback extends BSBase {
         Thread.sleep(10000);
 
        // tap on palyer to show Control rack
-        driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc=\"Show player controls\"]/android.widget.FrameLayout[1]/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View\n")).click();
-        Thread.sleep(2000);
+        driver.findElement(By.id("com.shawmedia.smglobal:id/exo_content_frame")).click();
+        Thread.sleep(1000);
 
         //tap on Pause button to pause playback
         driver.findElement(By.id("com.shawmedia.smglobal:id/exo_pause")).click();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
 
         //driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc=\"Show player controls\"]\n")).click();
