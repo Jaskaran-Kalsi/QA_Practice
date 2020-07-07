@@ -2,10 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Single">
     <test name="SingleTest">
-        <parameter name="config" value="local.conf.json"/>
-        <parameter name="environment" value="google_pixel_3"/>
+        <parameter name="config" value="local.ios.conf.json"/>
+        <parameter name="environment" value="iphone_11_pro_max"/>
         <classes>
-            <class name="ca.testng.practice.testcases.SingleTest"/>
+            <class name="ca.testng.practice.ios.testcases.IOSSingleTest"/>
         </classes>
     </test>
 

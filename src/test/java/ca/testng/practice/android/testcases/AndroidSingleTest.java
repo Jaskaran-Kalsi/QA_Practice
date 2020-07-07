@@ -1,4 +1,4 @@
-package ca.testng.practice.testcases;
+package ca.testng.practice.android.testcases;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
  * @author jkalsi - QA_Practice
  * @since May 05, 2020
  */
-public class SingleTest extends BaseTest {
+public class AndroidSingleTest extends AndroidBaseTest {
     @Test
     public void test() {
         String searchTerm = "Hello";

@@ -1,12 +1,12 @@
-package ca.testng.practice.testcases;
+package ca.testng.practice.ios.testcases;
 
 import com.browserstack.local.Local;
 import com.google.common.flogger.FluentLogger;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
@@ -15,9 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.nio.file.Path;
@@ -31,7 +29,7 @@ import java.util.Map;
  * @since May 05, 2020
  */
 @SuppressWarnings("unchecked")
-public class BaseTest {
+public class IOSBaseTest {
 
     /**
      * Test Name for the test being executed by current Thread.
@@ -77,7 +75,7 @@ public class BaseTest {
 
     public void cloudDriver(String config_file, String environment) throws Exception {
         JSONParser parser = new JSONParser();
-        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
+        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/ios/conf/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -115,7 +113,7 @@ public class BaseTest {
             local.start(options);
         }
 
-        driver = new AndroidDriver(new URL("http://"
+        driver = new IOSDriver<IOSElement>(new URL("http://"
                 + username
                 + ":"
                 + accessKey
@@ -127,8 +125,9 @@ public class BaseTest {
 
     public void localDriver(String config_file, String environment) throws Exception {
         JSONParser parser = new JSONParser();
-        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
+        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/ios/conf/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
@@ -153,8 +152,8 @@ public class BaseTest {
             }
         }
 
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
 
-        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        driver = new IOSDriver<IOSElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     }
 }
