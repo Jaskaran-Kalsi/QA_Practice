@@ -3,9 +3,9 @@
 <suite name="Single">
     <test name="SingleTest">
         <parameter name="config" value="single.conf.json"/>
-        <parameter name="environment" value="google_pixel_3"/>
+        <parameter name="environment" value="samsung_galaxy_s9"/>
         <classes>
-            <class name="ca.testng.practice.testcases.SingleTest"/>
+            <class name="ca.testng.practice.testcases.NavigationTest"/>
         </classes>
     </test>
 

@@ -6,8 +6,8 @@
   "environments": {
     "google_pixel_3": {
       "deviceName": "Google Pixel 3",
-      "udid": "4432395548493098",
-      "os": "10"
+      "udid": "dcfbd0d2",
+      "os": "6.0.1"
     }
   }
 }

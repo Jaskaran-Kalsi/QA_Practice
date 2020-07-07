@@ -1,17 +1,38 @@
 {
   "server": "hub-cloud.browserstack.com",
-  "user": "jaskarn1",
-  "key": "kzQsX6TQnhfLP4f9Ngq3",
+  "user": "sharonseto1",
+  "key": "paSbuuqw4shxCHh5u1Cq",
 
   "capabilities": {
-    "build": "testng-practice",
+    "build": "sharon-practice",
     "browserstack.debug": true,
-    "app": "bs://8d69534ef6638e0b7d75b2d6cc3229ab1bea068e"
+    "app": "bs://47cb733232fab35e8fe293cd31e3558cf530ecf2",
+    "browserstack.geoLocation": "CA"
   },
 
   "environments": {
     "google_pixel_3": {
       "device": "Google Pixel 3"
+    },
+    "samsung_tab_s6": {
+      "device": "Samsung Galaxy Tab S6"
+    },
+
+    "samsung_galaxy_s8": {
+      "device": "Samsung Galaxy S8"
+    },
+
+    "samsung_tab_s3": {
+      "device": "Samsung Galaxy Tab S3"
     }
-  }
+  ,
+    "motorola_g7_play": {
+      "device": "Motorola Moto G7 Play"
+  },
+
+    "samsung_galaxy_s9": {
+      "device": "Samsung Galaxy S9"
+    }
+}
+
 }
