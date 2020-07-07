@@ -1,6 +1,6 @@
 {
   "capabilities": {
-    "app": "src/test/resources/applications/android-release-build-4.0.0-408.apk"
+    "app": "src/test/resources/applications/android-release-build-4.0.0-410.apk"
   },
 
   "environments": {

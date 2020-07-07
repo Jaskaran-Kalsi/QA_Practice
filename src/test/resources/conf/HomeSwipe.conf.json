@@ -6,7 +6,7 @@
   "capabilities": {
     "build": "testng-practice",
     "browserstack.debug": true,
-    "app": "bs://90209e79d7cc6f5dbf087d81128e84e7e1591cb1",
+    "app": "bs://9803de46b1cf7492dbd1ba91db575dd28f3008a0",
     "browserstack.appium_version": "1.14.0",
     "browserstack.geoLocation": "CA"
   },
