@@ -1,0 +1,17 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "jaskarn1",
+  "key": "kzQsX6TQnhfLP4f9Ngq3",
+
+  "capabilities": {
+    "build": "testng-practice",
+    "browserstack.debug": true,
+    "app": "bs://8d69534ef6638e0b7d75b2d6cc3229ab1bea068e"
+  },
+
+  "environments": {
+    "google_pixel_3": {
+      "device": "Google Pixel 3"
+    }
+  }
+}
