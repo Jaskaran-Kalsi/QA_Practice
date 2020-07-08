@@ -5,7 +5,7 @@
         <parameter name="config" value="VideoPlayback2Local.conf.json"/>
         <parameter name="environment" value="samsung_galaxy_tab_s6"/>
         <classes>
-            <class name="ca.testng.practice.testcases.VideoPlayback2"/>
+            <class name="ca.testng.practice.android.testcases.VideoPlayback2"/>
         </classes>
     </test>
 

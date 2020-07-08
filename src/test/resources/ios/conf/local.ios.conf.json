@@ -1,0 +1,13 @@
+{
+  "capabilities": {
+    "app": "src/test/resources/applications/WikipediaSample.apk"
+  },
+
+  "environments": {
+    "google_pixel_3": {
+      "deviceName": "Google Pixel 3",
+      "udid": "emulator-5554",
+      "os": "10"
+    }
+  }
+}

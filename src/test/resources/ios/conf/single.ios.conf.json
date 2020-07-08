@@ -1,0 +1,17 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "Elena",
+  "key": "kzQsX6TQnhfLP4f9Ngq3",
+
+  "capabilities": {
+    "build": "testng-practice ios",
+    "browserstack.debug": true,
+    "app": "bs://26ee6fb99cc61a72d8515b6d671dd20560591735"
+  },
+
+  "environments": {
+    "iphone_11_pro_max": {
+      "device": "iPhone 11 Pro Max"
+    }
+  }
+}
