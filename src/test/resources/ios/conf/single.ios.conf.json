@@ -3,12 +3,10 @@
   "user": "elena605",
   "key": "J1p5G99KyrpQWLxyN9fb",
 
-
   "capabilities": {
     "build": "testng-practice ios",
     "browserstack.debug": true,
     "app": "bs://444bd0308813ae0dc236f8cd461c02d3afa7901d"
-
   },
 
   "environments": {
