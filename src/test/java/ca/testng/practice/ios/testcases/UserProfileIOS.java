@@ -14,13 +14,17 @@ public class UserProfileIOS extends BSBaseIOS {
     public void test() throws MalformedURLException, InterruptedException {
         try {
             //click Skip button
-            WebElement skipButton = driver.findElement(MobileBy.AndroidUIAutomator("text(\"SKIP\")"));
-            skipButton.click();
-        } catch (Exception e) {
+            Thread.sleep(3000);
+            //WebElement skipButton = driver.findElement(By.name("text(\"SKIP\")"));
+            //skipButton.click();
+            driver.findElement(By.name("SKIP")).click();
+        }
+
+        catch (Exception e) {
             System.out.println("Skip is not found");
         }
 
-        //Thread.sleep(1000);
+        Thread.sleep(1000);
         // go to Profile and Settings screen
         driver.findElement(By.id("com.shawmedia.smglobal:id/profile_and_settings_button")).click();
         Thread.sleep(2000);
