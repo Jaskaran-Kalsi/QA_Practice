@@ -1,4 +1,4 @@
-package ca.testng.practice.testcases;
+package ca.testng.practice.ios.testcases;
 
 import com.browserstack.local.Local;
 import com.google.common.flogger.FluentLogger;
@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
  * @since May 05, 2020
  */
 @SuppressWarnings("unchecked")
-public class BSBase {
+public class IOSBaseTest {
 
     /**
      * Test Name for the test being executed by current Thread.

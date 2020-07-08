@@ -1,13 +1,13 @@
 {
   "capabilities": {
-    "app": "src/test/resources/applications/WikipediaSample.apk"
+    "app": "src/test/resources/ios/applications/BStackSamleApp.ipa"
   },
 
   "environments": {
     "google_pixel_3": {
-      "deviceName": "Google Pixel 3",
-      "udid": "emulator-5554",
-      "os": "10"
+      "deviceName": "iPhone 6S",
+      "udid": "XXXXXX",
+      "os": "XXXXX"
     }
   }
 }
