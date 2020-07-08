@@ -2,6 +2,7 @@ package ca.testng.practice.ios.testcases;
 import ca.testng.practice.android.testcases.BSBase;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -17,7 +18,7 @@ public class UserProfileIOS extends BSBaseIOS {
             Thread.sleep(3000);
             //WebElement skipButton = driver.findElement(By.name("text(\"SKIP\")"));
             //skipButton.click();
-            driver.findElement(By.name("SKIP")).click();
+            driver.findElement(MobileBy.AccessibilityId("SKIP")).click();
         }
 
         catch (Exception e) {
