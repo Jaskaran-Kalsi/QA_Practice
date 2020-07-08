@@ -1,4 +1,5 @@
-package ca.testng.practice.testcases;
+package ca.testng.practice.android.testcases;
+import ca.testng.practice.android.testcases.AndroidBaseTest;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
@@ -18,7 +19,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.time.Duration;
 
-public class SingleTest2 extends BaseTest {
+public class SingleTest2 extends AndroidBaseTest {
     private Object AndroidDriver;
 
     //Sharon practice - find overflow menu, go to Settings and click About link

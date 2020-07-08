@@ -1,5 +1,6 @@
-package ca.testng.practice.testcases;
+package ca.testng.practice.android.testcases;
 
+import ca.testng.practice.android.testcases.AndroidBaseTest;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
@@ -17,7 +18,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class NavigationTest extends BaseTest{
+public class NavigationTest extends AndroidBaseTest {
 
     //Skip onboarding
 

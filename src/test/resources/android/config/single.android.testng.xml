@@ -2,10 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Single">
     <test name="SingleTest">
-        <parameter name="config" value="single.conf.json"/>
+        <parameter name="config" value="single.android.conf.json"/>
         <parameter name="environment" value="samsung_galaxy_s9"/>
         <classes>
-            <class name="ca.testng.practice.testcases.NavigationTest"/>
+            <class name="ca.testng.practice.android.testcases.NavigationTest"/>
         </classes>
     </test>
 

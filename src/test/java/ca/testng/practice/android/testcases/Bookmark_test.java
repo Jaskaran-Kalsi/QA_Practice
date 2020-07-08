@@ -1,5 +1,6 @@
-package ca.testng.practice.testcases;
+package ca.testng.practice.android.testcases;
 
+import ca.testng.practice.android.testcases.AndroidBaseTest;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
@@ -9,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 
-public class Bookmark_test extends BaseTest {
+public class Bookmark_test extends AndroidBaseTest {
 
     //Perform search and create a Article List
 
