@@ -2,19 +2,21 @@ package ca.testng.practice.ios.testcases;
 
 import com.browserstack.local.Local;
 import com.google.common.flogger.FluentLogger;
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import io.appium.java_client.touch.offset.PointOption;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
@@ -78,17 +80,14 @@ public class IOSBaseTest {
 
     @AfterMethod(alwaysRun=true)
     public void tearDown() throws Exception {
-        if (driver!=null) {
-            driver.quit();
-        }
-
+        driver.quit();
         if(local != null) local.stop();
         logger.atInfo().log("Test Ended...");
     }
 
     public void cloudDriver(String config_file, String environment) throws Exception {
         JSONParser parser = new JSONParser();
-        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
+        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/ios/conf/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -129,7 +128,7 @@ public class IOSBaseTest {
             local.start(options);
         }
 
-        driver = new AndroidDriver(new URL("http://"
+        driver = new IOSDriver<IOSElement>(new URL("http://"
                 + username
                 + ":"
                 + accessKey
@@ -141,7 +140,7 @@ public class IOSBaseTest {
 
     public void localDriver(String config_file, String environment) throws Exception {
         JSONParser parser = new JSONParser();
-        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
+        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/ios/conf/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -167,9 +166,10 @@ public class IOSBaseTest {
                 }
             }
         }
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 
-        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
+
+        driver = new IOSDriver<IOSElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     }
 
     public void swipe() {
@@ -187,8 +187,6 @@ public class IOSBaseTest {
         logger.atInfo().log("Swipe Completed.");
     }
 
-
-
     public void swipeHorizontal(WebElement elementFrom, WebElement elementTo) {
         Point pFrom = elementFrom.getLocation();
         Point pTo = elementTo.getLocation();
@@ -203,16 +201,6 @@ public class IOSBaseTest {
         action.perform();
         logger.atInfo().log("Scroll Completed.");
     }
-/*
-   //test to tap player for palyer controls
-         public void tapPlayer(int x, int y) {
-
-        new TouchAction((PerformsTouchActions) driver)
-                .tap(PointOption.point(x, y))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(200)))
-                .perform();
-    }
-*/
 
 }
 
