@@ -1,22 +1,29 @@
 package ca.testng.practice.ios.testcases;
 
+import io.appium.java_client.PerformsTouchActions;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 
 import java.net.MalformedURLException;
+import java.time.Duration;
 
 public class PickerViewiOS extends testiOS {
     public static void main(String[] arg) throws MalformedURLException, InterruptedException {
         IOSDriver<IOSElement> driver= capabilities();
 
-/*        driver.findElement(By.id("Alert Views")).click();
+       driver.findElement(By.id("Alert Views")).click();
         driver.findElement(By.name("Text Entry")).click();
        Thread.sleep(2000);
-/*        driver.findElement(By.id("Text Entry")).sendKeys("Hello");
+       driver.findElement(By.id("Text Entry")).sendKeys("Hello");
         Thread.sleep(2000);
         driver.findElement(By.id("OK")).click();
-*/
-/*        driver.findElement(By.id("Cancel")).click();
+
+        driver.findElement(By.id("Cancel")).click();
         driver.navigate().back();
         //or to navigate back as below
         // driver.findElement(By.name("UICatalog")).click();
@@ -30,7 +37,7 @@ public class PickerViewiOS extends testiOS {
                 .perform();
 
         driver.findElementByAccessibilityId("Switches").click();
- */       driver.navigate().back();
+        driver.navigate().back();
         driver.findElementByAccessibilityId("Steppers").click();
         driver.findElementsByName("Increment").get(0).click();
         driver.findElementsByName("Increment").get(0).click();

@@ -4,9 +4,8 @@ import com.browserstack.local.Local;
 import com.google.common.flogger.FluentLogger;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.ElementOption;
@@ -40,7 +39,7 @@ import java.util.concurrent.TimeUnit;
  * @since May 05, 2020
  */
 @SuppressWarnings("unchecked")
-public class IOSBaseTest {
+public class BSBaseIOS {
 
     /**
      * Test Name for the test being executed by current Thread.
@@ -80,7 +79,10 @@ public class IOSBaseTest {
 
     @AfterMethod(alwaysRun=true)
     public void tearDown() throws Exception {
-        driver.quit();
+        if (driver!=null) {
+            driver.quit();
+        }
+
         if(local != null) local.stop();
         logger.atInfo().log("Test Ended...");
     }
@@ -128,7 +130,7 @@ public class IOSBaseTest {
             local.start(options);
         }
 
-        driver = new IOSDriver<IOSElement>(new URL("http://"
+        driver = new AndroidDriver(new URL("http://"
                 + username
                 + ":"
                 + accessKey
@@ -166,10 +168,9 @@ public class IOSBaseTest {
                 }
             }
         }
-
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
 
-        driver = new IOSDriver<IOSElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     }
 
     public void swipe() {
@@ -187,6 +188,8 @@ public class IOSBaseTest {
         logger.atInfo().log("Swipe Completed.");
     }
 
+
+
     public void swipeHorizontal(WebElement elementFrom, WebElement elementTo) {
         Point pFrom = elementFrom.getLocation();
         Point pTo = elementTo.getLocation();
@@ -201,5 +204,14 @@ public class IOSBaseTest {
         action.perform();
         logger.atInfo().log("Scroll Completed.");
     }
+/*
+   //test to tap player for palyer controls
+         public void tapPlayer(int x, int y) {
+        new TouchAction((PerformsTouchActions) driver)
+                .tap(PointOption.point(x, y))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(200)))
+                .perform();
+    }
+*/
 
 }
