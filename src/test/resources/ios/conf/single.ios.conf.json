@@ -2,15 +2,15 @@
   "server": "hub-cloud.browserstack.com",
   "user": "elena605",
   "key": "J1p5G99KyrpQWLxyN9fb",
-
   "capabilities": {
     "build": "testng-practice ios",
     "browserstack.debug": true,
-    "app": "bs://444bd0308813ae0dc236f8cd461c02d3afa7901d"
+    "app": "bs://e8c0caeec65cae52239843c938b4ff9dbbb0d210",
+    "browserstack.appium_version": "1.16.0",
+    "browserstack.geoLocation": "CA"
   },
-
   "environments": {
-    "iphone_11_pro_max": {
+    "iPhone_6S": {
       "device": "iPhone 6S"
     }
   }

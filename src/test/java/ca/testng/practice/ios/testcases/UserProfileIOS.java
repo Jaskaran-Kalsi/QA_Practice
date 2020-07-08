@@ -12,16 +12,12 @@ import java.util.concurrent.TimeUnit;
 public class UserProfileIOS extends BSBaseIOS {
     @Test
     public void test() throws MalformedURLException, InterruptedException {
-        // TODO Auto-generated method stub
-
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         try {
             //click Skip button
             WebElement skipButton = driver.findElement(MobileBy.AndroidUIAutomator("text(\"SKIP\")"));
             skipButton.click();
         } catch (Exception e) {
             System.out.println("Skip is not found");
-
         }
 
         //Thread.sleep(1000);

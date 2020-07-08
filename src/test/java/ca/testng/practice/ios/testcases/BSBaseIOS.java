@@ -6,6 +6,8 @@ import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.ElementOption;
@@ -130,7 +132,7 @@ public class BSBaseIOS {
             local.start(options);
         }
 
-        driver = new AndroidDriver(new URL("http://"
+        driver = new IOSDriver<IOSElement>(new URL("http://"
                 + username
                 + ":"
                 + accessKey
@@ -170,7 +172,7 @@ public class BSBaseIOS {
         }
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
 
-        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        driver = new IOSDriver<IOSElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
     }
 
     public void swipe() {
