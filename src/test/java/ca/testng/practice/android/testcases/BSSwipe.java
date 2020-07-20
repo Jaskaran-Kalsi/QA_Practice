@@ -68,8 +68,8 @@ public class BSSwipe extends BSBase {
         }
 
 //click on show to get show details page
-        //WebElement show = driver.findElement(MobileBy.AndroidUIAutomator("description(\"A Little Late with Lilly Singh\")"));
-        //show.click();
+        WebElement show = driver.findElement(MobileBy.AndroidUIAutomator("description(\"A Little Late with Lilly Singh\")"));
+        show.click();
 
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
@@ -102,8 +102,8 @@ public class BSSwipe extends BSBase {
         new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
                 .perform();
-        WebElement show=driver.findElement(MobileBy.AndroidUIAutomator("description(\"Scott’s Vacation House Rules\")"));
-        show.click();
+        WebElement show1=driver.findElement(MobileBy.AndroidUIAutomator("description(\"Scott’s Vacation House Rules\")"));
+        show1.click();
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
         //Click More/Less buttons

@@ -50,9 +50,12 @@ public class UserProfileIOS extends BSBaseIOS {
         String headerProfile = header.getText();
         System.out.println(headerProfile);
        //print out Message from Profile screen
-        MobileElement Messaging = (MobileElement) driver.findElement(By.xpath("//XCUIElementTypeStaticText[contains(@name,\"access\")]"));
+ /*       MobileElement Messaging = (MobileElement) driver.findElement(By.xpath("//XCUIElementTypeStaticText[contains(@name,\"access\")]"));
         String profileMessaging = Messaging.getText();
         System.out.println(profileMessaging);
+*/
+        driver.findElement(By.xpath("//XCUIElementTypeStaticText[contains(@name,\"access\")]")).getText();
+        System.out.println();
 
         Thread.sleep(5000);
        // go to app settings screen
