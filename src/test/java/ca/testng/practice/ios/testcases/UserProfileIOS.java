@@ -2,8 +2,13 @@ package ca.testng.practice.ios.testcases;
 import ca.testng.practice.android.testcases.BSBase;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.PerformsTouchActions;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -63,12 +68,13 @@ public class UserProfileIOS extends BSBaseIOS {
         Thread.sleep(2000);
 
         // go back to main screen by Back button
-        driver.findElement(By.name("backArrow")).click();
+        clicksOnBackButton(driver.findElement(By.xpath("//XCUIElementTypeNavigationBar[@name=\"App Settings\"]")));
+        //driver.findElement(By.name("backArrow")).click();
 
         Thread.sleep(2000);
         // go to About screen
         driver.findElement(By.id("About")).click();
-     System.out.println("About screen");
+        System.out.println("About screen");
 
 
         // print out if Global Logo found
@@ -79,7 +85,7 @@ public class UserProfileIOS extends BSBaseIOS {
 
         Thread.sleep(2000);
        // print out app version
-        MobileElement Version = (MobileElement) driver.findElement(By.id("App Version: 5.0-B30"));
+        MobileElement Version = (MobileElement) driver.findElement(MobileBy.iOSNsPredicateString("name CONTAINS \"App Version\""));
         String AppVersion = Version.getText();
         System.out.println("App Version  " + AppVersion);
 
@@ -87,7 +93,7 @@ public class UserProfileIOS extends BSBaseIOS {
         Thread.sleep(2000);
 
        // go to Terms and conditions screen, select browser and back
-        driver.findElement(By.id("TERMS AND CONDITIONS")).click();
+        driver.findElement(By.id("TERMS & CONDITIONS")).click();
 
 
 
@@ -136,5 +142,22 @@ public class UserProfileIOS extends BSBaseIOS {
         Thread.sleep(2000);
 
 
+    }
+
+    private void clicksOnBackButton(WebElement element) {
+        Point navigationBarLocation = element.getLocation();
+        Dimension navigationBarSize = element.getSize();
+
+        int x = (navigationBarLocation.x + navigationBarSize.height) - (navigationBarSize.height / 2);
+        int y = (navigationBarLocation.y + navigationBarSize.height) - (navigationBarSize.height / 2);
+
+        Point tapLocationPoint = new Point(x, y);
+        tapLocation(tapLocationPoint);
+    }
+
+    public void tapLocation(Point point) {
+        TouchAction action = new TouchAction((PerformsTouchActions) driver);
+        action.tap(PointOption.point(point));
+        action.perform();
     }
 }
