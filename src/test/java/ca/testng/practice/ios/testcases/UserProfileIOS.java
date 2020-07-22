@@ -12,12 +12,10 @@ import java.util.concurrent.TimeUnit;
 
 public class UserProfileIOS extends BSBaseIOS {
     @Test
-    public void test() throws MalformedURLException, InterruptedException {
+    public void test() throws InterruptedException {
         try {
             //click Skip button
             Thread.sleep(3000);
-            //WebElement skipButton = driver.findElement(By.name("text(\"SKIP\")"));
-            //skipButton.click();
             driver.findElement(MobileBy.AccessibilityId("SKIP")).click();
         }
 
