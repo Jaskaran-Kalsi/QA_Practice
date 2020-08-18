@@ -1,4 +1,4 @@
-package ca.testng.practice.ios.testcases;
+package ca.testng.practice.testcases.TestVersions;
 
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;

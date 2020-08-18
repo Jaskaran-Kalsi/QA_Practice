@@ -1,6 +1,7 @@
-package ca.testng.practice.ios.testcases;
+package ca.testng.practice.testcases.TestVersions;
 
 
+import ca.testng.practice.testcases.TestVersions.IOSBaseTest;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.ios.IOSElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;

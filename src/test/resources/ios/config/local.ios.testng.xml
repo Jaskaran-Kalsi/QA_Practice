@@ -5,7 +5,7 @@
         <parameter name="config" value="local.ios.conf.json"/>
         <parameter name="environment" value="iphone_11_pro_max"/>
         <classes>
-            <class name="ca.testng.practice.ios.testcases.IOSSingleTest"/>
+            <class name="ca.testng.practice.testcases.TestVersions.IOSSingleTest"/>
         </classes>
     </test>
 

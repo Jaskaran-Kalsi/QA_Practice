@@ -32,14 +32,13 @@ public class UserProfileIOS extends BSBaseIOS {
 
         Thread.sleep(1000);
         // go to Profile and Settings screen
-
         driver.findElement(By.xpath("//XCUIElementTypeButton[@name=\"profile unauth\"]")).click();
 
-
-
         Thread.sleep(2000);
-       // go back to main screen by Back button
+
+        // go back to main screen by Back button
         driver.findElement(By.name("backArrow")).click();
+
         Thread.sleep(2000);
 
         //navigate to Shows tab
@@ -47,11 +46,10 @@ public class UserProfileIOS extends BSBaseIOS {
 
 
         // go to Profile and Settings screen
-       // driver.findElement(By.xpath("//XCUIElementTypeButton[@name=\"profile unauth\"]")).click();
         driver.findElement(By.xpath("//XCUIElementTypeButton[contains(@name,\"profile\")]")).click();
         Thread.sleep(3000);
         //print out screen name
-        MobileElement header = (MobileElement) driver.findElement(By.id("Profile & Settings"));
+        MobileElement header = driver.findElement(By.id("Profile & Settings"));
         String headerProfile = header.getText();
         System.out.println(headerProfile);
        //print out Message from Profile screen
@@ -62,56 +60,87 @@ public class UserProfileIOS extends BSBaseIOS {
         driver.findElement(By.xpath("//XCUIElementTypeStaticText[contains(@name,\"access\")]")).getText();
         System.out.println();
 
-        Thread.sleep(5000);
-       // go to app settings screen
+        Thread.sleep(2000);
+
+        // go to app settings screen
         driver.findElement(By.id("App Settings")).click();
+
+        Thread.sleep(2000);
+
+        // go back to Profile screen by Back button
+        clicksOnBackButton(driver.findElement(By.xpath("//XCUIElementTypeNavigationBar[@name=\"App Settings\"]")));
+
+        //go to What's new
+        driver.findElement(By.id("What's New")).click();
+
+        Thread.sleep(2000);
+
+        // go back to Profile screen by Back button
+        clicksOnBackButton(driver.findElement(By.xpath("//XCUIElementTypeNavigationBar[@name=\"What's New\"]")));
+
+        //or to close the screen
+        //driver.findElement(By.id("CLOSE"));
+
+        //go to help and FAQ
+        driver.findElement(By.id("Help & FAQ")).click();
+
         Thread.sleep(2000);
 
         // go back to main screen by Back button
-        clicksOnBackButton(driver.findElement(By.xpath("//XCUIElementTypeNavigationBar[@name=\"App Settings\"]")));
-        //driver.findElement(By.name("backArrow")).click();
+        clicksOnBackButton(driver.findElement(By.xpath("//XCUIElementTypeNavigationBar[@name=\"Help & FAQ\"]")));
+
+
+        //go to Contact us
+        driver.findElement(By.id("Contact Us")).click();
 
         Thread.sleep(2000);
+
+        // go back to Profile screen by Back button
+        clicksOnBackButton(driver.findElement(By.xpath("//XCUIElementTypeNavigationBar[@name=\"Contact Us\"]")));
+
+        //go to Rate our app
+        driver.findElement(By.id("Rate Our App")).click();
+
+        Thread.sleep(1000);
+
+        // go back to Global by Back to GLobal button
+        driver.findElement(By.id("Return to Global TV")).click();
+
+        // go to Profile and Settings screen
+        driver.findElement(By.xpath("//XCUIElementTypeButton[contains(@name,\"profile\")]")).click();
+
+        Thread.sleep(2000);
+
+        //go to Newsletter
+        driver.findElement(By.id("Newsletter")).click();
+
+        Thread.sleep(2000);
+
+        // go back to Profile screen by Back button
+        clicksOnBackButton(driver.findElement(By.xpath("//XCUIElementTypeNavigationBar[@name=\"Newsletter\"]")));
+
         // go to About screen
         driver.findElement(By.id("About")).click();
         System.out.println("About screen");
 
+        Thread.sleep(2000);
 
         // print out if Global Logo found
-        MobileElement GlobalLogo = (MobileElement) driver.findElement(By.name("global"));
-               // driver.findElement(By.xpath("//XCUIElementTypeImage[contains(@name,\"logo\")]"));
+        MobileElement GlobalLogo = driver.findElement(By.name("global"));
         String Logo = GlobalLogo.getText();
         System.out.println("Global Logo" + Logo);
 
         Thread.sleep(2000);
        // print out app version
-        MobileElement Version = (MobileElement) driver.findElement(MobileBy.iOSNsPredicateString("name CONTAINS \"App Version\""));
+        MobileElement Version = driver.findElement(MobileBy.iOSNsPredicateString("name CONTAINS \"App Version\""));
         String AppVersion = Version.getText();
         System.out.println("App Version  " + AppVersion);
-
 
         Thread.sleep(2000);
 
        // go to Terms and conditions screen, select browser and back
         driver.findElement(By.id("TERMS & CONDITIONS")).click();
 
-
-
-       //Below code should be activated when running on BS devices
-
- /*           MobileElement popUpChrome = driver.findElement(By.xpath("//android.widget.TextView[@text=\"Chrome\"]"));
-            if (popUpChrome.isDisplayed()) {
-                popUpChrome.click();
-                MobileElement popUpButtonAlways = driver.findElement(By.id("android:id/button_always"));
-                popUpButtonAlways.click();
-            } else {
-              driver.findElement(By.id("Return to Global TV")).click();
-
-                logger.atInfo().log("Select Browser PopUp Not Displayed");
-
-                   }
-
-*/
         Thread.sleep(2000);
 
         driver.findElement(By.id("Return to Global TV")).click();
@@ -120,6 +149,8 @@ public class UserProfileIOS extends BSBaseIOS {
         // go to Privacy Policy screen and Back
         driver.findElement(By.id("PRIVACY POLICY")).click();
 
+        Thread.sleep(2000);
+
         driver.findElement(By.id("Return to Global TV")).click();
 
         // go to Ads Terms and conditions screen and back
@@ -127,37 +158,22 @@ public class UserProfileIOS extends BSBaseIOS {
 
         driver.findElement(By.id("Return to Global TV")).click();
 
+        Thread.sleep(2000);
+
         // go to About Ad choices screen and back
         driver.findElement(By.id("Ad Choices")).click();
 
+        Thread.sleep(2000);
 
         driver.findElement(By.id("Return to Global TV")).click();
 
         // go to Copyright screen
         // print out Copyright message
-        MobileElement Copyright = (MobileElement) driver.findElement(By.id("© Corus Entertainment Inc. 2020. All Rights Reserved"));
+        MobileElement Copyright = driver.findElement(By.id("© Corus Entertainment Inc. 2020. All Rights Reserved"));
         String AppCopyright = Copyright.getText();
         System.out.println("App Copyright  " + AppCopyright);
 
         Thread.sleep(2000);
 
-
-    }
-
-    private void clicksOnBackButton(WebElement element) {
-        Point navigationBarLocation = element.getLocation();
-        Dimension navigationBarSize = element.getSize();
-
-        int x = (navigationBarLocation.x + navigationBarSize.height) - (navigationBarSize.height / 2);
-        int y = (navigationBarLocation.y + navigationBarSize.height) - (navigationBarSize.height / 2);
-
-        Point tapLocationPoint = new Point(x, y);
-        tapLocation(tapLocationPoint);
-    }
-
-    public void tapLocation(Point point) {
-        TouchAction action = new TouchAction((PerformsTouchActions) driver);
-        action.tap(PointOption.point(point));
-        action.perform();
     }
 }

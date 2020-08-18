@@ -206,6 +206,22 @@ public class BSBaseIOS {
         action.perform();
         logger.atInfo().log("Scroll Completed.");
     }
+    public void clicksOnBackButton(WebElement element) {
+        Point navigationBarLocation = element.getLocation();
+        Dimension navigationBarSize = element.getSize();
+
+        int x = (navigationBarLocation.x + navigationBarSize.height) - (navigationBarSize.height / 2);
+        int y = (navigationBarLocation.y + navigationBarSize.height) - (navigationBarSize.height / 2);
+
+        Point tapLocationPoint = new Point(x, y);
+        tapLocation(tapLocationPoint);
+    }
+
+    public void tapLocation(Point point) {
+        TouchAction action = new TouchAction((PerformsTouchActions) driver);
+        action.tap(PointOption.point(point));
+        action.perform();
+    }
 /*
    //test to tap player for palyer controls
          public void tapPlayer(int x, int y) {

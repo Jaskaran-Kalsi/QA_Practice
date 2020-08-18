@@ -1,4 +1,4 @@
-package ca.testng.practice.ios.testcases;
+package ca.testng.practice.testcases.TestVersions;
 
 import com.browserstack.local.Local;
 import com.google.common.flogger.FluentLogger;
