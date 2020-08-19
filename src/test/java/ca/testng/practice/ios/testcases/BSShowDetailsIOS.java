@@ -23,7 +23,7 @@ public class BSShowDetailsIOS extends BSBaseIOS {
         // TODO Auto-generated method stub
 
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         //click Skip button
         driver.findElement(MobileBy.AccessibilityId("SKIP")).click();
@@ -32,25 +32,29 @@ public class BSShowDetailsIOS extends BSBaseIOS {
         driver.findElement(By.id("SHOWS")).click();
         Thread.sleep(2000);
 
-       //scroll down
-       // calculate bottom & top of the screen
+        //scroll down
+        // calculate bottom & top of the screen
         Dimension size = driver.manage().window().getSize();
         int middleX = (int) (size.getWidth() * 0.5);
         int bottomY = (int) (size.getHeight() * 0.8);
         int topY = (int) (size.getHeight() * 0.3);
         // lookup for element to refresh appium
         new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
-            .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
                 .perform();
         new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
-            .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
                 .perform();
-        //    new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
+        //new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
         //        .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
         //            .perform();
-        //    new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
+        //new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
         //        .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
         //            .perform();
+
+        //new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
+        //        .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
+        //        .perform();
 
 
         //click on show to get show details page
@@ -62,13 +66,12 @@ public class BSShowDetailsIOS extends BSBaseIOS {
 
         System.out.println("Play button is displayed");
 
-       //click on Episode More button
+        //click on Episode More button
 
         driver.findElement(By.xpath("(//XCUIElementTypeButton[@name=\"MORE\"])[2]")).click();
-        //driver.findElement(By.xpath("//XCUIElementTypeStaticText[contains(@name,\"Watch\")]")).getText();
-        //System.out.println();
 
-      // print out Episode More text
+
+        // print out Episode More text
         MobileElement MoreInfo = (MobileElement) driver.findElement(By.xpath("//XCUIElementTypeStaticText[contains(@name,\"Watch\")]"));
         String Info = MoreInfo.getText();
         System.out.println("Episode Info  " + Info);
@@ -93,12 +96,39 @@ public class BSShowDetailsIOS extends BSBaseIOS {
         //click to cancel unfavourite show
         driver.findElement(By.id("No, cancel")).click();
 
-        // navigate back to Home details screen
+        // navigate back to Home screen
         driver.findElement(By.id("Back")).click();
 
-       // lookup for element to refresh appium
+        // navigate to the show details from rotator
+        driver.findElement(By.id("WATCH SERIES")).click();
+        Thread.sleep(1000);
 
-        List<MobileElement> shows = driver.findElements(By.id("Indebted"));
+        // navigate back to Home screen
+        driver.findElement(By.id("HOME")).click();
+        //Back
+
+        // lookup for element to refresh appium
+
+        new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
+                .perform();
+        new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
+                .perform();
+        new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
+                .perform();
+        new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
+                .perform();
+        new TouchAction((PerformsTouchActions) driver).press(PointOption.point(middleX, bottomY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000))).moveTo(PointOption.point(middleX, topY)).release()
+                .perform();
+
+        //click on Show
+        driver.findElement(By.name("Alone")).click();
+
+/*        List<MobileElement> shows = driver.findElement(By.id("History"));
         List<String> showsName = new ArrayList<>();
         for (MobileElement el : shows) {
             showsName.add(el.getAttribute("name"));
@@ -107,7 +137,7 @@ public class BSShowDetailsIOS extends BSBaseIOS {
         boolean showFound = false;
         while (!previousList.equals(showsName) && !showFound) {
             for (MobileElement el : shows) {
-                if (el.getAttribute("name").contains("Indebted")) {
+                if (el.getAttribute("name").contains("Alone")) {
                     el.click();
                     showFound = true;
                     break;
@@ -121,33 +151,24 @@ public class BSShowDetailsIOS extends BSBaseIOS {
             Thread.sleep(2000);
             previousList.clear();
             previousList.addAll(showsName);
-            shows = driver.findElements(By.id("Indebted"));
+            shows = driver.findElements(By.id("Alone"));
             showsName.clear();
             for (MobileElement el : shows) {
                 showsName.add(el.getAttribute("name"));
-            }
 
-            //click on Show
-            driver.findElement(By.id("Indebted")).click();
         }
 
     }
 
- /*       //click Back button to return to Shows screen - Global brand
+       //click Back button to return to Shows screen - Global brand
         WebElement BackButton = driver.findElement(By.id("Back"));
         BackButton.click();
         //navigate to Home
         driver.findElement(By.id("HOME")).click();
         Thread.sleep(3000);
 
-        //Click More/Less buttons
-        driver.findElement(By.id("com.shawmedia.smglobal:id/detail_page_more_less_button")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.id("com.shawmedia.smglobal:id/detail_page_more_less_button")).click();
-
-
-
 */
 
     }
+}
 
